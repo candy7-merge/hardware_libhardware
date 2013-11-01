@@ -67,6 +67,11 @@ typedef enum {
     POWER_HINT_LAUNCH = 0x00000008,
     POWER_HINT_DISABLE_TOUCH = 0x00000009,
 
+    POWER_HINT_CPU_BOOST    = 0x00000010,
+    POWER_HINT_LAUNCH_BOOST = 0x00000011,
+    POWER_HINT_AUDIO        = 0x00000020,
+    POWER_HINT_SET_PROFILE  = 0x00000030
+
 } power_hint_t;
 
 typedef enum {
@@ -267,6 +272,12 @@ typedef struct power_module {
      *     Touch controller could be disabled in those modes to save power.
      *     The data parameter is non-zero when touch could be disabled, and zero
      *     when touch needs to be re-enabled.
+     *
+     * POWER_HINT_CPU_BOOST
+     *
+     *     An operation is happening where it would be ideal for the CPU to
+     *     be boosted for a specific duration. The data parameter is an
+     *     integer value of the boost duration in microseconds.
      *
      * A particular platform may choose to ignore any hint.
      *
