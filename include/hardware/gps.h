@@ -650,7 +650,11 @@ typedef struct {
      */
     GnssSvInfo gnss_sv_list[GNSS_MAX_SVS];
 
+#ifdef SOURCE_GPS_HAX
+} QcomGnssSvStatus;
+#else
 } GnssSvStatus;
+#endif
 
 /* CellID for 2G, 3G and LTE, used in AGPS. */
 typedef struct {
@@ -710,7 +714,11 @@ typedef void (* gps_sv_status_callback)(GpsSvStatus* sv_info);
  * Callback with SV status information.
  * Can only be called from a thread created by create_thread_cb.
  */
+#ifdef SOURCE_GPS_HAX
+typedef void (* gnss_sv_status_callback)(QcomGnssSvStatus* sv_info);
+#else
 typedef void (* gnss_sv_status_callback)(GnssSvStatus* sv_info);
+#endif
 
 /**
  * Callback for reporting NMEA sentences. Can only be called from a thread
